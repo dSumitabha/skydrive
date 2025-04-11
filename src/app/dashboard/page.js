@@ -1,5 +1,5 @@
 import { AiOutlineCloud } from "react-icons/ai";
-import FolderItem from "@/components/FolderItem";
+import FolderList from "@/components/FolderList";
 import FileItem from "@/components/FileItem";
 import AddFolder from "@/components/AddFolder";
 import UploadFile from "@/components/UploadFile";
@@ -40,12 +40,8 @@ export default function Dashboard() {
       </div>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Folders</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {folders.map((folder) => (
-            <FolderItem key={folder.id} name={folder.name} />
-          ))}
-        </div>
+            <h2 className="text-xl font-semibold mb-2">Folders</h2>
+            <FolderList />
       </section>
 
       <section>
