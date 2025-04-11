@@ -13,12 +13,16 @@ export async function GET(req) {
     const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET));
 
     const { searchParams } = new URL(req.url);
+    const hasParentId = searchParams.has('parentId'); // differentiate "null" vs missing
     const parentId = searchParams.get('parentId') || null;
 
-    const folders = await Folder.find({
-      user: payload.id,
-      parentId: parentId // null means root-level
-    }).sort({ createdAt: -1 });
+    let folders;
+    if (hasParentId) {
+      folders = await Folder.find({ user: payload.id, parentId }).sort({ createdAt: -1 });
+    } else {
+      folders = await Folder.find({ user: payload.id }).sort({ createdAt: -1 }); // Get all folders
+    }
+
 
     return NextResponse.json({ folders }, { status: 200 });
   } catch (error) {

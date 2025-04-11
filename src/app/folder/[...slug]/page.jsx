@@ -24,7 +24,7 @@ export default function FolderPage() {
         let parentId = null;
 
         for (const name of slug) {
-          const folder = folderTree.find(f => f.name === name && f.parentId === parentId);
+          const folder = folderTree.find(f => f.name === name && String(f.parentId) === String(parentId));
           if (!folder) throw new Error(`Folder "${name}" not found`);
           parentId = folder._id;
         }
