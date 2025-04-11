@@ -24,7 +24,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
     }
 
-    const token = await new SignJWT({ id: user._id, email: user.email })
+    const token = await new SignJWT({ id: user._id.toString(), email: user.email })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
       .setExpirationTime('7d')
