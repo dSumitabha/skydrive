@@ -30,7 +30,19 @@ export async function POST(req) {
       .setExpirationTime('7d')
       .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 
-    return NextResponse.json({ message: 'Login successful', token }, { status: 200 });
+    const res = NextResponse.json({ message: 'Login successful' });
+
+    res.cookies.set({
+      name: 'token',
+      value: token,
+      httpOnly: true,
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    return res;
   } catch (error) {
     console.error('Login Error:', error);
     return NextResponse.json({ error: 'Something went wrong during login.' }, { status: 500 });

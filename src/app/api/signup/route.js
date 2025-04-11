@@ -36,7 +36,15 @@ export async function POST(req) {
       .setExpirationTime('7d')
       .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 
-    return NextResponse.json({ message: 'User created successfully', token }, { status: 201 });
+    const response = NextResponse.json({ message: 'User created successfully' }, { status: 201 });
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7 // 7 days
+    });
+
+    return response;
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Something went wrong.' }, { status: 500 });
