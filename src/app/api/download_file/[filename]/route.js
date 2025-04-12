@@ -50,5 +50,3 @@ export async function GET(req, context) {
 	  return NextResponse.json({ error: "File not found or unauthorized" }, { status: 404 });
 	}
 }
-  
-  
