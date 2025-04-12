@@ -16,15 +16,13 @@ export async function GET(req) {
     );
 
     const { searchParams } = new URL(req.url);
-    const hasFolderId = searchParams.has('folderId');
-    const folderId = searchParams.get('folderId') || null;
+    let folderId = searchParams.get('folderId');
 
-    let files;
-    if (hasFolderId) {
-      files = await File.find({ user: payload.id, folderId }).sort({ createdAt: -1 });
-    } else {
-      files = await File.find({ user: payload.id, folderId: null }).sort({ createdAt: -1 });
+    if (folderId === "null" || !folderId) {
+      folderId = null;
     }
+
+    const files = await File.find({ user: payload.id, folderId }).sort({ createdAt: -1 });
 
     return NextResponse.json({ files }, { status: 200 });
   } catch (error) {

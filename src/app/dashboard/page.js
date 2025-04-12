@@ -6,6 +6,7 @@ import AddFolder from "@/components/AddFolder";
 import UploadFile from "@/components/UploadFile";
 
 export default function Dashboard() {
+  const rootParentId = null;
 
   return (
     <>
@@ -24,7 +25,7 @@ export default function Dashboard() {
 
         <section>
           <h2 className="text-xl font-semibold mb-2">Files</h2>
-          <FileList />
+          <FileList folderId={rootParentId} />
         </section>
       </main>
     </>

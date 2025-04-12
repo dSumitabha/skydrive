@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import FileList from "@/components/FileList";
 import FolderItem from "@/components/FolderItem";
 import AddFolder from "@/components/AddFolder";
 import Header from "@/components/Header";
@@ -72,6 +73,10 @@ export default function FolderPage() {
             ))}
           </div>
         )}
+        <section>
+          <h2 className="text-xl font-semibold mb-2">Files</h2>
+          <FileList folderId={currentParentId} />
+        </section>
       </main>
     </>
   );
