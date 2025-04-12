@@ -42,7 +42,7 @@ export async function POST(req) {
       name: file.name,
       mimeType: file.type,
       size: file.size,
-      url: `/api/file/${filename}`, // later served from secure route
+      url: `/api/file/${filename}`, 
       localPath: filepath,
       folderId: formData.get("folderId") || null,
       user: payload.id,

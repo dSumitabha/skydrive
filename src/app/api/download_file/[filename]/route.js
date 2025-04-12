@@ -8,7 +8,7 @@ import File from "@/models/File";
 
 export async function GET(req, context) {
 	try {
-	  console.log("GET /api/download_file/[filename]");
+
 	  await dbConnect();
   
 	  const { filename } = await context.params;
@@ -32,7 +32,6 @@ export async function GET(req, context) {
 
 	  const filenameOnDisk = file.url.split("/").pop();
 	  const filePath = path.join(process.cwd(), "storage", file.user.toString(), filenameOnDisk);
-		console.log("File path:", filePath);
   
 	  const fileStat = await stat(filePath);
 	  const fileStream = createReadStream(filePath);
