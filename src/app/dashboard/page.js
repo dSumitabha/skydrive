@@ -15,7 +15,7 @@ export default function Dashboard() {
 
         <div className="flex items-center justify-between mb-4">
           <AddFolder />
-          <UploadFile />
+          <UploadFile parentId={null} />
         </div>
 
         <section className="mb-8">

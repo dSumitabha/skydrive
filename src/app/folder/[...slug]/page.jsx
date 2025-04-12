@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import UploadFile from "@/components/UploadFile";
 import FileList from "@/components/FileList";
 import FolderItem from "@/components/FolderItem";
 import AddFolder from "@/components/AddFolder";
@@ -59,8 +60,9 @@ export default function FolderPage() {
     <>
       <Header />
       <main className="p-6 max-w-6xl mx-auto">
-        <div className="mb-4">
-          <AddFolder parentId={currentParentId} onFolderCreated={() => window.location.reload()} />
+        <div className="flex items-center justify-between mb-4">
+          <AddFolder />
+          <UploadFile parentId={currentParentId} onUploadComplete={() => window.location.reload()} />
         </div>
         {loading ? (
           <p className="text-gray-500">Loading folders...</p>
@@ -73,7 +75,7 @@ export default function FolderPage() {
             ))}
           </div>
         )}
-        <section>
+        <section className="mt-8">
           <h2 className="text-xl font-semibold mb-2">Files</h2>
           <FileList folderId={currentParentId} />
         </section>

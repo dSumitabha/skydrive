@@ -2,7 +2,7 @@
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useState } from "react";
 
-export default function UploadFile() {
+export default function UploadFile({ parentId = null, onUploadComplete }) {
   const [uploading, setUploading] = useState(false);
 
   const handleUpload = async (e) => {
@@ -11,6 +11,11 @@ export default function UploadFile() {
 
     const formData = new FormData();
     formData.append("file", file);
+
+    // 💡 Append folderId only if it's not null
+    if (parentId) {
+      formData.append("folderId", parentId);
+    }
 
     try {
       setUploading(true);
@@ -25,6 +30,9 @@ export default function UploadFile() {
       if (!res.ok) throw new Error(data.error || "Upload failed");
 
       alert(`Uploaded: ${data.file.name}`);
+
+      // Optional callback after successful upload
+      onUploadComplete?.();
     } catch (err) {
       console.error("Upload error:", err);
       alert("Upload failed.");
