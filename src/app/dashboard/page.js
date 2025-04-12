@@ -6,17 +6,6 @@ import AddFolder from "@/components/AddFolder";
 import UploadFile from "@/components/UploadFile";
 
 export default function Dashboard() {
-  const folders = [
-    { id: 1, name: "Projects" },
-    { id: 2, name: "Images" },
-    { id: 3, name: "Resume" }
-  ];
-
-  const files = [
-    { id: 1, name: "design.png", type: "image/png" },
-    { id: 2, name: "cv.pdf", type: "application/pdf" },
-    { id: 3, name: "notes.txt", type: "text/plain" }
-  ];
 
   return (
     <>
