@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# File Management App (Cloud Drive Clone)
 
-## Getting Started
+A modern cloud-drive-inspired file and folder management app built with **Next.js**, featuring JWT-based authentication, file upload/download, nested folder navigation, and an advanced UI.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- User Authentication (JWT + Cookie-based)
+- Nested Folder Structure with unlimited depth
+- File Upload, View, Download & Delete
+- Parent-Child Folder Handling
+- RESTful APIs for CRUD operations
+- Local Disk File Storage (organized per user)
+- Dynamic Routing using `[...slug]` for deep folder navigation
+- Modern UX with real-time feedback and reload-free interactions
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- **Framework**: Next.js (App Router)
+- **Backend**: Node.js + MongoDB (via Mongoose)
+- **Authentication**: JSON Web Tokens (JWT)
+- **Storage**: Local file system under `/storage/[userId]/`
+- **Styling**: TailwindCSS, React Icons
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Folder Structure
