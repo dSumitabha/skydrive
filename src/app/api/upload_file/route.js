@@ -7,7 +7,7 @@ import File from "@/models/File";
 import { createUserStorageDir } from "@/utils/createUserStorageDir";
 
 export async function POST(req) {
-  console.log("POST /api/upload_file");
+
   try {
     await dbConnect();
 
