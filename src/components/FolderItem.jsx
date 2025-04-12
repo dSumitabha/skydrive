@@ -6,7 +6,7 @@ export default function FolderItem({ name, currentPath = [] }) {
   const router = useRouter();
 
   const handleClick = () => {
-    const newPath = [...currentPath, name].join("/");
+    const newPath = [...currentPath, name].map(encodeURIComponent).join("/");
     router.push(`/folder/${newPath}`);
   };
 

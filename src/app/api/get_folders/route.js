@@ -13,20 +13,19 @@ export async function GET(req) {
     const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET));
 
     const { searchParams } = new URL(req.url);
-    const hasParentId = searchParams.has('parentId'); // differentiate "null" vs missing
+    const hasParentId = searchParams.has('parentId');
     const parentId = searchParams.get('parentId') || null;
 
     let folders;
     if (hasParentId) {
       folders = await Folder.find({ user: payload.id, parentId }).sort({ createdAt: -1 });
     } else {
-      folders = await Folder.find({ user: payload.id }).sort({ createdAt: -1 }); // Get all folders
+      folders = await Folder.find({ user: payload.id, parentId: null }).sort({ createdAt: -1 });
     }
-
 
     return NextResponse.json({ folders }, { status: 200 });
   } catch (error) {
     console.error('Fetch Folders Error:', error);
     return NextResponse.json({ error: 'Something went wrong.' }, { status: 500 });
   }
-} 
+}

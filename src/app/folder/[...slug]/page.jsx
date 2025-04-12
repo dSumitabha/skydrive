@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 export default function FolderPage() {
   const params = useParams();
   const slug = params.slug || [];
+  const decodedSlug = slug.map(decodeURIComponent);
 
   const [folders, setFolders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,10 +24,17 @@ export default function FolderPage() {
         let folderTree = data.folders;
         let parentId = null;
 
-        for (const name of slug) {
-          const folder = folderTree.find(f => f.name === name && String(f.parentId) === String(parentId));
+        for (const name of decodedSlug) {
+          const folder = folderTree.find(
+            (f) => f.name === name && String(f.parentId) === String(parentId)
+          );
           if (!folder) throw new Error(`Folder "${name}" not found`);
           parentId = folder._id;
+          // fetch next level of folders for next slug item
+          const resNext = await fetch(`/api/get_folders?parentId=${parentId}`);
+          const nextData = await resNext.json();
+          if (!resNext.ok) throw new Error(nextData.error || "Failed to load folders");
+          folderTree = nextData.folders;
         }
 
         const resNested = await fetch(`/api/get_folders?parentId=${parentId}`);
@@ -59,8 +67,8 @@ export default function FolderPage() {
           <p className="text-gray-500">No folders found.</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {folders.map(folder => (
-              <FolderItem key={folder._id} name={folder.name} />
+            {folders.map((folder) => (
+              <FolderItem key={folder._id} name={folder.name} currentPath={decodedSlug} />
             ))}
           </div>
         )}
