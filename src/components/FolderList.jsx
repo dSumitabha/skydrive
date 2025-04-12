@@ -31,7 +31,7 @@ export default function FolderList({ parentId = null, currentPath = [] }) {
   if (!folders.length) return <p className="text-gray-500">No folders found.</p>;
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
       {folders.map((folder) => (
         <FolderItem
           key={folder._id}

@@ -31,7 +31,7 @@ export default function FileList({ folderId }) {
   if (!files.length) return <p className="text-gray-500">No files found.</p>;
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
       {files.map((file) => (
         <FileItem key={file._id} id={file._id} name={file.name} type={file.mimeType} />
       ))}
