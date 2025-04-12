@@ -16,9 +16,13 @@ export default function Header() {
     }
   };
 
+  const goToDashboard = () => {
+    router.push("/dashboard");
+  };
+
   return (
     <header className="w-full flex justify-between items-center px-6 py-4 bg-blue-600 text-white shadow">
-      <div className="flex items-center gap-2 text-2xl">
+      <div className="flex items-center gap-2 text-2xl cursor-pointer" onClick={goToDashboard}>
         <AiOutlineCloud className="text-white" />
         <span className="text-white font-semibold">skyDrive</span>
       </div>
