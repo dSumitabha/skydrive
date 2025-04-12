@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   const goToDashboard = () => {
-    router.push("/dashboard");
+    router.push("/");
   };
 
   return (

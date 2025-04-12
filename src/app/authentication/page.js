@@ -42,7 +42,7 @@ export default function AuthenticationPage() {
       if (!res.ok) throw new Error(data.error || "Something went wrong")
 
       // Redirect to dashboard
-      router.push("/dashboard")
+      router.push("/")
     } catch (error) {
       setMessage(error.message)
     }
