@@ -1,4 +1,5 @@
 import { AiOutlineCloud } from "react-icons/ai";
+import Header from "@/components/Header";
 import FolderList from "@/components/FolderList";
 import FileItem from "@/components/FileItem";
 import AddFolder from "@/components/AddFolder";
@@ -18,40 +19,29 @@ export default function Dashboard() {
   ];
 
   return (
-    <main className="p-6 max-w-6xl mx-auto">
-        <header className="flex items-center justify-between flex-wrap gap-4 text-lg font-semibold mb-6">
-            <div className="flex items-center gap-2 text-2xl">
-                <AiOutlineCloud className="text-sky-500" />
-                <span className="text-sky-700">SkyDrive</span>
-            </div>
+    <>
+      <Header />
+      <main className="p-6 max-w-6xl mx-auto">
 
-            <div className="flex items-center gap-3 text-sm">
-                <span className="text-gray-700 font-medium">Welcome, John</span>
-                <button className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded">
-                Logout
-                </button>
-            </div>
-        </header>
-
-
-      <div className="flex items-center justify-between mb-4">
-        <AddFolder />
-        <UploadFile />
-      </div>
-
-      <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-2">Folders</h2>
-            <FolderList />
-      </section>
-
-      <section>
-        <h2 className="text-xl font-semibold mb-2">Files</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {files.map((file) => (
-            <FileItem key={file.id} name={file.name} type={file.type} />
-          ))}
+        <div className="flex items-center justify-between mb-4">
+          <AddFolder />
+          <UploadFile />
         </div>
-      </section>
-    </main>
+
+        <section className="mb-8">
+              <h2 className="text-xl font-semibold mb-2">Folders</h2>
+              <FolderList />
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-2">Files</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            {files.map((file) => (
+              <FileItem key={file.id} name={file.name} type={file.type} />
+            ))}
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

@@ -57,7 +57,7 @@ export default function FolderPage() {
   return (
     <>
       <Header />
-      <div className="px-4 py-6">
+      <main className="p-6 max-w-6xl mx-auto">
         <div className="mb-4">
           <AddFolder parentId={currentParentId} onFolderCreated={() => window.location.reload()} />
         </div>
@@ -72,7 +72,7 @@ export default function FolderPage() {
             ))}
           </div>
         )}
-      </div>
+      </main>
     </>
   );
 }
