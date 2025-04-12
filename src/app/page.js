@@ -14,7 +14,7 @@ export default function Dashboard() {
       <main className="p-6 max-w-6xl mx-auto">
 
         <div className="flex items-center justify-between mb-4">
-          <AddFolder />
+          <AddFolder parentId={rootParentId} />
           <UploadFile parentId={null} />
         </div>
 

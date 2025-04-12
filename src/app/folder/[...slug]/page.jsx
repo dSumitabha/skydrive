@@ -61,7 +61,7 @@ export default function FolderPage() {
       <Header />
       <main className="p-6 max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <AddFolder />
+          <AddFolder parentId={currentParentId} onFolderCreated={() => window.location.reload()} />
           <UploadFile parentId={currentParentId} onUploadComplete={() => window.location.reload()} />
         </div>
         {loading ? (
